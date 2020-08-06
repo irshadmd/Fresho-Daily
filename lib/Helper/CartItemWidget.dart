@@ -1,4 +1,5 @@
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:final_app/api/cart.dart';
 import 'package:final_app/models/AllProducts.dart';
 import 'package:final_app/models/Cart.dart';
@@ -53,7 +54,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-      height: 70,
+      height: 120,
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -95,21 +96,34 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 Container(
                   child: Column(
                     children: <Widget>[
-                      Text(
-                        "${widget.cartData.productName.toString()}",
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: GoogleFonts.raleway(
-                          fontSize: 20.0, color: Colors.black
-                        )
+                      SizedBox(
+                        width: 120,
+                        height: 30,
+                        child: AutoSizeText(
+                          "${widget.cartData.productName.toString()}",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                          style: GoogleFonts.raleway(
+                            fontSize: 20.0, color: Colors.black,fontWeight: FontWeight.bold,
+                          )
+                        ),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         "Total               "+"${widget.cartData.quantity.toString()}",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
-                        style: GoogleFonts.raleway(
+                        style: TextStyle(
                           fontSize: 20.0, color: Colors.black
-                        )
+                        ),
+                      ),
+                      Text(
+                        "Price               "+"\u20B9 ${widget.cartData.subtotal.toString()}",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontSize: 20.0, color: Colors.black,fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ],
                   ),

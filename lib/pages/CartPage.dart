@@ -104,7 +104,6 @@ class _CartState extends State<Cart> {
             fit: StackFit.expand,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(bottom: 150),
                 padding: EdgeInsets.only(bottom: 15),
                 child: SingleChildScrollView(
                   padding: EdgeInsets.symmetric(vertical: 10),

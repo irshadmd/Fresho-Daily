@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:final_app/api/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -65,13 +66,17 @@ class _TrendingNowState extends State<TrendingNow> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
-                        this.widget.title,
-                        overflow: TextOverflow.fade,
-                        style: GoogleFonts.raleway(
-                            color: Colors.black,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: 220,
+                        height: 30,
+                        child: AutoSizeText(
+                          this.widget.title,
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                            style: GoogleFonts.raleway(
+                              fontSize: 20.0, color: Colors.black,fontWeight: FontWeight.bold,
+                            )
+                        ),
                       ),
                       SizedBox(
                         height: 10,

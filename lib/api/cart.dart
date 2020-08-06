@@ -48,7 +48,7 @@ class CartApi{
       for (int i = 0; i < totalCoupons; i++) {
         CategoriesApiDetail.add(CartData.fromJson(data[i]));
       }
-      print("=========================== Cart product Listing ============");
+      print("=========================== Cart product Listing ============ $data");
       print(CategoriesApiDetail);
       return CategoriesApiDetail;
     } else {
