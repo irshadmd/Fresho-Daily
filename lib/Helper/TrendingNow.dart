@@ -28,7 +28,6 @@ class _TrendingNowState extends State<TrendingNow> {
       decoration: BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.all(Radius.circular(10)),
-
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -69,14 +68,14 @@ class _TrendingNowState extends State<TrendingNow> {
                       SizedBox(
                         width: 220,
                         height: 30,
-                        child: AutoSizeText(
-                          this.widget.title,
+                        child: AutoSizeText(this.widget.title,
                             overflow: TextOverflow.fade,
                             maxLines: 2,
                             style: GoogleFonts.raleway(
-                              fontSize: 20.0, color: Colors.black,fontWeight: FontWeight.bold,
-                            )
-                        ),
+                              fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            )),
                       ),
                       SizedBox(
                         height: 10,

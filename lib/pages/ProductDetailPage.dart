@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:final_app/Constants.dart';
 import 'package:final_app/api/cart.dart';
 import 'package:final_app/models/Cart.dart';
@@ -52,11 +53,20 @@ class _PlantDetailState extends State<PlantDetail> {
     }
   }
 
+  int count = 0;
+
   @override
   void initState() {
     super.initState();
     print("====Trending Now==============");
     getCouponList();
+    CartApi.cartCount().then((value) {
+      if (value != 0) {
+        setState(() {
+          count = value;
+        });
+      }
+    });
   }
 
   @override
@@ -107,8 +117,14 @@ class _PlantDetailState extends State<PlantDetail> {
                     backgroundColor: Colors.white,
                     mini: true,
                     elevation: 0.0,
-                    child: Icon(Icons.shopping_cart,
-                        color: Colors.redAccent, size: 15.0),
+                    child: Badge(
+                      badgeColor: Colors.black87,
+                      badgeContent: Text(
+                        "$count",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      child: Icon(Icons.shopping_cart, color: Colors.redAccent),
+                    ),
                   ),
                 ),
                 Padding(
@@ -211,6 +227,13 @@ class _PlantDetailState extends State<PlantDetail> {
                                         this.widget.details.id.toString())
                                     .then((value) {
                                   if (value == "Item Added to Cart") {
+                                    CartApi.cartCount().then((value) {
+                                      if (value != 0) {
+                                        setState(() {
+                                          count = value;
+                                        });
+                                      }
+                                    });
                                     globalKey.currentState.showSnackBar(
                                         SnackBar(
                                             backgroundColor: Theme.of(context)
