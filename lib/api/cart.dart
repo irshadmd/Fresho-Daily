@@ -4,10 +4,8 @@ import 'package:final_app/models/Cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
-
-class CartApi{
-
-   static Future<dynamic> addToCart(String id) async {
+class CartApi {
+  static Future<dynamic> addToCart(String id) async {
     final authtoken = await Preferences.getData("authToken");
     print("===============================");
     print(authtoken);
@@ -28,27 +26,27 @@ class CartApi{
 
   // https://freshodaily.com/api/cart-list
 
-
-   static Future<dynamic> cartList() async {
+  static Future<dynamic> cartList() async {
     final authtoken = await Preferences.getData("authToken");
-    final response = await http.get(
-        Uri.encodeFull("https://freshodaily.com/api/cart-list"),
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $authtoken',
-        });
+    final response = await http
+        .get(Uri.encodeFull("https://freshodaily.com/api/cart-list"), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $authtoken',
+    });
     var responseJson = jsonDecode(response.body);
     var data = responseJson["data"];
     var message = responseJson["message"];
-    print("============================ Cart ===================================");
+    print(
+        "============================ Cart ===================================");
 
-    if(data!=null){
+    if (data != null) {
       int totalCoupons = data.length;
       List<CartData> CategoriesApiDetail = List<CartData>();
       for (int i = 0; i < totalCoupons; i++) {
         CategoriesApiDetail.add(CartData.fromJson(data[i]));
       }
-      print("=========================== Cart product Listing ============ $data");
+      print(
+          "=========================== Cart product Listing ============ $data");
       print(CategoriesApiDetail);
       return CategoriesApiDetail;
     } else {
@@ -56,16 +54,13 @@ class CartApi{
     }
   }
 
-
   static Future<dynamic> deleteCartItemById(String id) async {
     final authtoken = await Preferences.getData("authToken");
     print("===============================");
     print(authtoken);
     final response = await http.post(
       "https://freshodaily.com/api/delete-single-product-in-cart",
-      body: {
-        'id': id.toString()
-      },
+      body: {'id': id.toString()},
       headers: <String, String>{
         'Accept': 'application/json',
         'Authorization': 'Bearer $authtoken',
@@ -74,7 +69,6 @@ class CartApi{
     print(response.body);
     return response;
   }
-
 
   static Future<dynamic> deleteCart() async {
     final authtoken = await Preferences.getData("authToken");
@@ -91,17 +85,57 @@ class CartApi{
     return response;
   }
 
-   static Future<dynamic> cartCount() async {
-     final authtoken = await Preferences.getData("authToken");
-     final response = await http.get(
-       "https://freshodaily.com/api/cart-count",
-       headers: <String, String>{
-         'Accept': 'application/json',
-         'Authorization': 'Bearer $authtoken',
-       },
-     );
-     var responseJson = jsonDecode(response.body);
-     var data = responseJson["data"];
-     return data;
-   }
+  static Future<dynamic> cartCount() async {
+    final authtoken = await Preferences.getData("authToken");
+    final response = await http.get(
+      "https://freshodaily.com/api/cart-count",
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authtoken',
+      },
+    );
+    var responseJson = jsonDecode(response.body);
+    var data = responseJson["data"];
+    return data;
+  }
+
+  static Future<dynamic> updateCartItemByIdAdd(
+      String id, String quantity) async {
+    int quan = int.parse(quantity) + 1;
+    String newquan = quan.toString();
+    final authtoken = await Preferences.getData("authToken");
+    print("===============================");
+    print(authtoken);
+    final response = await http.post(
+      "https://freshodaily.com/api/update-cart",
+      body: {'cart_id': id.toString(), 'quantity': newquan.toString()},
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authtoken',
+      },
+    );
+    print(response.body);
+    return response;
+  }
+
+  static Future<dynamic> updateCartItemByIdSub(
+      String id, String quantity) async {
+    int quan = int.parse(quantity) - 1;
+    if (quan >= 1) {
+      String newquan = quan.toString();
+      final authtoken = await Preferences.getData("authToken");
+      print("===============================");
+      print(authtoken);
+      final response = await http.post(
+        "https://freshodaily.com/api/update-cart",
+        body: {'cart_id': id.toString(), 'quantity': newquan.toString()},
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $authtoken',
+        },
+      );
+      print(response.body);
+      return response;
+    }
+  }
 }

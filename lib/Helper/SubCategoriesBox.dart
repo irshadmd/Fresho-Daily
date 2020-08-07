@@ -21,7 +21,8 @@ class _SubCategoriesBoxState extends State<SubCategoriesBox> {
   Detail details;
 
   void getCouponList() async {
-    await ProductDetil.getProductbyId(this.widget.id.toString()).then((value) {
+    print("^^^^^^^^^^^^^^^Printing subcategory id:^^^^^^^^^^^^^^^^^^^^^^^^^^^^^${this.widget.categoriesApi.id.toString()}");
+    await ProductDetil.getProductbyId(this.widget.categoriesApi.id.toString()).then((value) {
       if (mounted) {
         setState(() {
           details = value;
