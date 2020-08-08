@@ -147,7 +147,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintText: '••••••••••••',
                         hintStyle:
                             TextStyle(color: Colors.white.withOpacity(0.7)),
-                        prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
+                        prefixIcon:
+                            Icon(Icons.lock_outline, color: Colors.white),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -182,7 +183,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintText: '••••••••••••',
                         hintStyle:
                             TextStyle(color: Colors.white.withOpacity(0.7)),
-                        prefixIcon: Icon(Icons.lock_outline, color: Colors.white),
+                        prefixIcon:
+                            Icon(Icons.lock_outline, color: Colors.white),
                         suffixIcon: GestureDetector(
                           onTap: () {
                             setState(() {
@@ -218,7 +220,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             confirmPasswordController.text == "" ||
                             passwordController.text == "") {
                           globalKey.currentState.showSnackBar(SnackBar(
-                              backgroundColor: Theme.of(context).focusColor.withOpacity(0.8),
+                              backgroundColor:
+                                  Theme.of(context).focusColor.withOpacity(0.8),
                               content: Text(
                                 "Fill All Details",
                                 style: TextStyle(
@@ -229,7 +232,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               )));
                         } else if (passwordController.text.length < 6) {
                           globalKey.currentState.showSnackBar(SnackBar(
-                              backgroundColor:Theme.of(context).focusColor.withOpacity(0.8),
+                              backgroundColor:
+                                  Theme.of(context).focusColor.withOpacity(0.8),
                               content: Text(
                                 "Password length should be greater than 6",
                                 style: TextStyle(
@@ -241,7 +245,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         } else if (passwordController.text.toString() !=
                             confirmPasswordController.text.toString()) {
                           globalKey.currentState.showSnackBar(SnackBar(
-                              backgroundColor: Theme.of(context).focusColor.withOpacity(0.8),
+                              backgroundColor:
+                                  Theme.of(context).focusColor.withOpacity(0.8),
                               content: Text(
                                 "Password and Confirm Password Should be same",
                                 style: TextStyle(
@@ -253,7 +258,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         } else if (!EmailValidator.validate(
                             emailController.text)) {
                           globalKey.currentState.showSnackBar(SnackBar(
-                              backgroundColor: Theme.of(context).focusColor.withOpacity(0.8),
+                              backgroundColor:
+                                  Theme.of(context).focusColor.withOpacity(0.8),
                               content: Text(
                                 "Invalid Email",
                                 style: TextStyle(
@@ -273,7 +279,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                   .pushReplacementNamed('/LoginPage');
                             } else {
                               globalKey.currentState.showSnackBar(SnackBar(
-                                  backgroundColor: Theme.of(context).focusColor.withOpacity(0.8),
+                                  backgroundColor: Theme.of(context)
+                                      .focusColor
+                                      .withOpacity(0.8),
                                   content: Text(
                                     "Email is already taken",
                                     style: TextStyle(
