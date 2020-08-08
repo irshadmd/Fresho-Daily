@@ -152,4 +152,27 @@ class CartApi {
       return response;
     }
   }
+
+  static Future<dynamic> orderPlacing(String address,String pin,String mobile,String email,String mode) async {
+    final authtoken = await Preferences.getData("authToken");
+    print(authtoken);
+    final response = await http.post(
+      "https://freshodaily.com/api/checkout",
+      body: {
+        'pin': pin.toString(),
+        'address': address.toString(),
+        'mobile': mobile.toString(),
+        'payment_mode': mode.toString(),
+        'email': email.toString()
+      },
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $authtoken',
+      },
+    );
+    var data = jsonDecode(response.body);
+    print(" ressssssssssssssssssssssssssssssssssssssssssssssss $data");
+    var responceJson = data["message"];
+    return responceJson;
+  }
 }

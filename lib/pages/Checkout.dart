@@ -1,5 +1,9 @@
+import 'package:email_validator/email_validator.dart';
+import 'package:final_app/api/cart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 class Checkout extends StatefulWidget {
   @override
@@ -11,7 +15,10 @@ class _CheckoutState extends State<Checkout> {
   TextEditingController mobileController = TextEditingController();
   TextEditingController pinController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  String paymentModeController = "cash";
+  String paymentModeController = "Cash";
+
+  final globalKey = GlobalKey<ScaffoldState>();
+  ProgressDialog pr;
 
   @override
   void initState() {
@@ -20,9 +27,20 @@ class _CheckoutState extends State<Checkout> {
 
   @override
   Widget build(BuildContext context) {
+    pr = ProgressDialog(context,
+        isDismissible: false,
+        customBody: Container(
+            color: Colors.transparent,
+            child: SpinKitCubeGrid(
+              color: Theme.of(context).accentColor,
+            )));
+    pr.style(
+      backgroundColor: Colors.transparent,
+    );
     return WillPopScope(
       onWillPop: _onBackPressed,
       child: Scaffold(
+        key: globalKey,
         appBar: AppBar(
           leading: GestureDetector(
               onTap: () {
@@ -174,15 +192,20 @@ class _CheckoutState extends State<Checkout> {
                       padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 0),
                       child: Row(
                         children: <Widget>[
-                          Icon(Icons.payment,color: Colors.redAccent,),
+                          Icon(
+                            Icons.payment,
+                            color: Colors.redAccent,
+                          ),
                           Text("Payment Mode"),
-                          SizedBox(width: 30,),
+                          SizedBox(
+                            width: 30,
+                          ),
                           Container(
                             width: 150,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.0),
-                                color: Colors.white70,
-                                border: Border.all(),
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Colors.white70,
+                              border: Border.all(),
                             ),
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton(
@@ -190,7 +213,7 @@ class _CheckoutState extends State<Checkout> {
                                   items: [
                                     DropdownMenuItem(
                                       child: Text("Cash"),
-                                      value: "cash",
+                                      value: "Cash",
                                     ),
                                     DropdownMenuItem(
                                       child: Text("Paynow"),
@@ -213,24 +236,77 @@ class _CheckoutState extends State<Checkout> {
                       height: 60,
                       child: RaisedButton.icon(
                         color: Colors.redAccent,
-                        onPressed: () {
+                        onPressed: () async {
+                          if (addressController.text.toString() == "" &&
+                                  pinController.text.toString() == "" ||
+                              mobileController.text.toString() == "" ||
+                              emailController.text.toString() == "") {
+                            globalKey.currentState.showSnackBar(SnackBar(
+                                backgroundColor: Theme.of(context)
+                                    .focusColor
+                                    .withOpacity(0.8),
+                                content: Text(
+                                  "Fill All Details",
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 10,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                )));
+                          } else if (!EmailValidator.validate(
+                              emailController.text)) {
+                            globalKey.currentState.showSnackBar(SnackBar(
+                                backgroundColor: Theme.of(context)
+                                    .focusColor
+                                    .withOpacity(0.8),
+                                content: Text(
+                                  "Invalid Email",
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 10,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                )));
+                          } else {
+                            pr.show();
+                            await CartApi.orderPlacing(
+                                    addressController.text.toString(),
+                                    pinController.text.toString(),
+                                    mobileController.text.toString(),
+                                    emailController.text.toString(),
+                                    paymentModeController.toString())
+                                .then((value) {
+                              pr.hide();
 
-                          Navigator.of(context).pushNamed('/MainPage');
+                              globalKey.currentState.showSnackBar(SnackBar(
+                                  backgroundColor: Theme.of(context)
+                                      .focusColor
+                                      .withOpacity(0.8),
+                                  content: Text(
+                                    "$value",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 10,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  )));
+                              if (value == "Order Placed") {
+                                Navigator.of(context)
+                                    .pushReplacementNamed('/OrderPlaced');
+                              }
+                            });
+                          }
                         },
                         shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.circular(
-                                25.0),
-                            side: BorderSide(
-                                color: Colors.red)),
+                            borderRadius: BorderRadius.circular(25.0),
+                            side: BorderSide(color: Colors.red)),
                         icon: Icon(
                           Icons.shopping_cart,
                           color: Colors.white,
                         ),
                         label: Text(
                           "Place Order",
-                          style: TextStyle(
-                              color: Colors.white),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     )

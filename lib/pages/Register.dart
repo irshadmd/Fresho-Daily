@@ -31,7 +31,7 @@ class _RegisterPageState extends State<RegisterPage> {
         customBody: Container(
             color: Colors.transparent,
             child: SpinKitCubeGrid(
-              color: Color(0xffdf6589ff),
+              color: Theme.of(context).accentColor,
             )));
     pr.style(
       backgroundColor: Colors.transparent,
