@@ -57,6 +57,11 @@ class _MainPageState extends State<MainPage> {
           count = value;
         });
       }
+      if(value==null){
+        setState(() {
+          count = 0;
+        });
+      }
     });
   }
 

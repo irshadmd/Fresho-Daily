@@ -1,15 +1,7 @@
-import 'dart:io';
-
-import 'package:final_app/Helper/BlockButton.dart';
 import 'package:final_app/Helper/CartItemWidget.dart';
-import 'package:final_app/api/Categories.dart';
 import 'package:final_app/api/cart.dart';
-import 'package:final_app/models/AllProducts.dart';
 import 'package:final_app/models/Cart.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
-import '../Constants.dart';
 
 class Cart extends StatefulWidget {
   int currentTab = 3;
@@ -298,7 +290,8 @@ class _CartState extends State<Cart> {
                                             child: RaisedButton.icon(
                                               color: Colors.redAccent,
                                               onPressed: () {
-                                                Navigator.of(context).pushNamed('/Checkout');
+                                                Navigator.of(context)
+                                                    .pushNamed('/Checkout');
                                               },
                                               shape: RoundedRectangleBorder(
                                                   borderRadius:

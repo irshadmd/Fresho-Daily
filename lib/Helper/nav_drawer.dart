@@ -93,6 +93,19 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
           ),
           ListTile(
+            onTap: () {
+              Navigator.of(context).pushNamed('/MyOrders');
+            },
+            leading: Icon(
+              Icons.card_travel,
+              color: Theme.of(context).focusColor.withOpacity(1),
+            ),
+            title: Text(
+              "My Orders",
+              style: Theme.of(context).textTheme.subhead,
+            ),
+          ),
+          ListTile(
             leading: Icon(
               Icons.notifications,
               color: Theme.of(context).focusColor.withOpacity(1),

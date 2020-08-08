@@ -3,6 +3,7 @@ import 'package:final_app/pages/Categories.dart';
 import 'package:final_app/pages/Checkout.dart';
 import 'package:final_app/pages/LoginPage.dart';
 import 'package:final_app/pages/MainPage.dart';
+import 'package:final_app/pages/MyOrders.dart';
 import 'package:final_app/pages/OrderPlaced.dart';
 import 'package:final_app/pages/ProductDetailPage.dart';
 import 'package:final_app/pages/Register.dart';
@@ -31,8 +32,10 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => Cart());
       case '/Checkout':
         return MaterialPageRoute(builder: (_) => Checkout());
-        case '/OrderPlaced':
+      case '/OrderPlaced':
         return MaterialPageRoute(builder: (_) => OrderPlaced());
+      case '/MyOrders':
+        return MaterialPageRoute(builder: (_) => MyOrders());
       case '/WalkThrough':
         return MaterialPageRoute(builder: (_) => WalkThrough());
       default:

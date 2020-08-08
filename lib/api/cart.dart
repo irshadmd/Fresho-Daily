@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:final_app/Preferences.dart';
 import 'package:final_app/models/Cart.dart';
+import 'package:final_app/models/OrderData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
@@ -153,7 +154,8 @@ class CartApi {
     }
   }
 
-  static Future<dynamic> orderPlacing(String address,String pin,String mobile,String email,String mode) async {
+  static Future<dynamic> orderPlacing(String address, String pin, String mobile,
+      String email, String mode) async {
     final authtoken = await Preferences.getData("authToken");
     print(authtoken);
     final response = await http.post(
@@ -174,5 +176,33 @@ class CartApi {
     print(" ressssssssssssssssssssssssssssssssssssssssssssssss $data");
     var responceJson = data["message"];
     return responceJson;
+  }
+
+  static Future<dynamic> myOrders() async {
+    final authtoken = await Preferences.getData("authToken");
+    final response = await http
+        .get(Uri.encodeFull("https://freshodaily.com/api/my-orders"), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $authtoken',
+    });
+    var responseJson = jsonDecode(response.body);
+    var data = responseJson["data"];
+    var message = responseJson["message"];
+    print(
+        "============================ Cart ===================================");
+
+    if (data != null) {
+      int totalCoupons = data.length;
+      List<OrderData> CategoriesApiDetail = List<OrderData>();
+      for (int i = 0; i < totalCoupons; i++) {
+        CategoriesApiDetail.add(OrderData.fromJson(data[i]));
+      }
+      print(
+          "=========================== Cart product Listing ============ $data");
+      print(CategoriesApiDetail);
+      return CategoriesApiDetail;
+    } else {
+      return responseJson["message"];
+    }
   }
 }

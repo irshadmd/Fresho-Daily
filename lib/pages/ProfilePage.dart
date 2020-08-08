@@ -133,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.of(context).pushNamed('/LoginPage');
                   },
 
-                  color: Colors.blueAccent,
+                  color: Colors.redAccent,
                   icon: Icon(
                     Icons.lock_open,
                     color: Colors.white70,

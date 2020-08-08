@@ -4,7 +4,6 @@ import 'package:final_app/api/cart.dart';
 import 'package:final_app/models/Cart.dart';
 import 'package:final_app/models/Details.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PlantDetail extends StatefulWidget {
@@ -64,6 +63,11 @@ class _PlantDetailState extends State<PlantDetail> {
       if (value != 0) {
         setState(() {
           count = value;
+        });
+      }
+      if (value == null) {
+        setState(() {
+          count = 0;
         });
       }
     });
