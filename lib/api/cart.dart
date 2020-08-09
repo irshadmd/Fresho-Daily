@@ -1,15 +1,13 @@
 import 'dart:convert';
+
 import 'package:final_app/Preferences.dart';
 import 'package:final_app/models/Cart.dart';
 import 'package:final_app/models/OrderData.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class CartApi {
   static Future<dynamic> addToCart(String id) async {
     final authtoken = await Preferences.getData("authToken");
-    print("===============================");
-    print(authtoken);
     final response = await http.post(
       "https://freshodaily.com/api/add-to-cart",
       body: {
@@ -37,18 +35,12 @@ class CartApi {
     var responseJson = jsonDecode(response.body);
     var data = responseJson["data"];
     var message = responseJson["message"];
-    print(
-        "============================ Cart ===================================");
-
     if (data != null) {
       int totalCoupons = data.length;
       List<CartData> CategoriesApiDetail = List<CartData>();
       for (int i = 0; i < totalCoupons; i++) {
         CategoriesApiDetail.add(CartData.fromJson(data[i]));
       }
-      print(
-          "=========================== Cart product Listing ============ $data");
-      print(CategoriesApiDetail);
       return CategoriesApiDetail;
     } else {
       return responseJson["message"];
@@ -71,8 +63,7 @@ class CartApi {
 
   static Future<dynamic> deleteCartItemById(String id) async {
     final authtoken = await Preferences.getData("authToken");
-    print("===============================");
-    print(authtoken);
+
     final response = await http.post(
       "https://freshodaily.com/api/delete-single-product-in-cart",
       body: {'id': id.toString()},
@@ -81,14 +72,12 @@ class CartApi {
         'Authorization': 'Bearer $authtoken',
       },
     );
-    print(response.body);
+
     return response;
   }
 
   static Future<dynamic> deleteCart() async {
     final authtoken = await Preferences.getData("authToken");
-    print("===============================");
-    print(authtoken);
     final response = await http.get(
       "https://freshodaily.com/api/delete-cart",
       headers: <String, String>{
@@ -96,7 +85,6 @@ class CartApi {
         'Authorization': 'Bearer $authtoken',
       },
     );
-    print(response);
     return response;
   }
 
@@ -119,8 +107,6 @@ class CartApi {
     int quan = int.parse(quantity) + 1;
     String newquan = quan.toString();
     final authtoken = await Preferences.getData("authToken");
-    print("===============================");
-    print(authtoken);
     final response = await http.post(
       "https://freshodaily.com/api/update-cart",
       body: {'cart_id': id.toString(), 'quantity': newquan.toString()},
@@ -129,7 +115,6 @@ class CartApi {
         'Authorization': 'Bearer $authtoken',
       },
     );
-    print(response.body);
     return response;
   }
 
@@ -139,8 +124,6 @@ class CartApi {
     if (quan >= 1) {
       String newquan = quan.toString();
       final authtoken = await Preferences.getData("authToken");
-      print("===============================");
-      print(authtoken);
       final response = await http.post(
         "https://freshodaily.com/api/update-cart",
         body: {'cart_id': id.toString(), 'quantity': newquan.toString()},
@@ -149,7 +132,6 @@ class CartApi {
           'Authorization': 'Bearer $authtoken',
         },
       );
-      print(response.body);
       return response;
     }
   }
@@ -157,7 +139,6 @@ class CartApi {
   static Future<dynamic> orderPlacing(String address, String pin, String mobile,
       String email, String mode) async {
     final authtoken = await Preferences.getData("authToken");
-    print(authtoken);
     final response = await http.post(
       "https://freshodaily.com/api/checkout",
       body: {
@@ -173,7 +154,6 @@ class CartApi {
       },
     );
     var data = jsonDecode(response.body);
-    print(" ressssssssssssssssssssssssssssssssssssssssssssssss $data");
     var responceJson = data["message"];
     return responceJson;
   }
@@ -188,8 +168,6 @@ class CartApi {
     var responseJson = jsonDecode(response.body);
     var data = responseJson["data"];
     var message = responseJson["message"];
-    print(
-        "============================ Cart ===================================");
 
     if (data != null) {
       int totalCoupons = data.length;
@@ -197,9 +175,6 @@ class CartApi {
       for (int i = 0; i < totalCoupons; i++) {
         CategoriesApiDetail.add(OrderData.fromJson(data[i]));
       }
-      print(
-          "=========================== Cart product Listing ============ $data");
-      print(CategoriesApiDetail);
       return CategoriesApiDetail;
     } else {
       return responseJson["message"];

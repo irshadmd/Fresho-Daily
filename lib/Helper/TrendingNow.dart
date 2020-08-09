@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:final_app/api/cart.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TrendingNow extends StatefulWidget {
@@ -112,7 +111,8 @@ class _TrendingNowState extends State<TrendingNow> {
                               CartApi.addToCart(this.widget.pices)
                                   .then((value) {
                                 if (value == "Item Added to Cart") {
-                                  Navigator.of(context).pushReplacementNamed('/MainPage');
+                                  Navigator.of(context)
+                                      .pushReplacementNamed('/MainPage');
                                   Scaffold.of(context).showSnackBar(SnackBar(
                                     content: Text("Item Added to Cart"),
                                   ));

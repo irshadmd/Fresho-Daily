@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class App {
   BuildContext _context;
   double _height;
@@ -11,8 +12,10 @@ class App {
     MediaQueryData _queryData = MediaQuery.of(this._context);
     _height = _queryData.size.height / 100.0;
     _width = _queryData.size.width / 100.0;
-    _heightPadding = _height - ((_queryData.padding.top + _queryData.padding.bottom) / 100.0);
-    _widthPadding = _width - (_queryData.padding.left + _queryData.padding.right) / 100.0;
+    _heightPadding = _height -
+        ((_queryData.padding.top + _queryData.padding.bottom) / 100.0);
+    _widthPadding =
+        _width - (_queryData.padding.left + _queryData.padding.right) / 100.0;
   }
 
   double appHeight(double v) {
@@ -35,8 +38,10 @@ class App {
 class Colors {
 //  Color _mainColor = Color(0xFFFF4E6A);
   Color _mainColor = Color(0xFF32CD32);
+
   // Color _mainColor = Color(0xFFea5c44);
   Color _mainDarkColor = Color(0xFF20b2aa);
+
   // Color _mainDarkColor = Color(0xFFea5c44);
   Color _secondColor = Color(0xFF344968);
   Color _secondDarkColor = Color(0xFFccccdd);

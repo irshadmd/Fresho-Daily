@@ -83,10 +83,7 @@ class _WalkThroughState extends State<WalkThrough> {
               "--",
               "--",
             );
-            Preferences.setWalkThrough().then((value) {
-              print(
-                  "========================Settting walk through=======================");
-            });
+            Preferences.setWalkThrough().then((value) {});
             Navigator.of(context).pushReplacementNamed('/LoginPage');
           },
           getStartedClicked: (value) {
@@ -95,17 +92,14 @@ class _WalkThroughState extends State<WalkThrough> {
               "--",
               "--",
             );
-            Preferences.setWalkThrough().then((value) {
-              print(
-                  "========================Settting walk through=======================");
-            });
+            Preferences.setWalkThrough().then((value) {});
             Navigator.of(context).pushReplacementNamed('/LoginPage');
           },
         ),
       );
-    }else if(afterwalk==false){
+    } else if (afterwalk == false) {
       return new LoginPage();
-    }else{
+    } else {
       return new MainPage();
     }
   }

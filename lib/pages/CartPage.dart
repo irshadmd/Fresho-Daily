@@ -23,10 +23,6 @@ class _CartState extends State<Cart> {
       if (value is List) {
         setState(() {
           productApi = value;
-          print("=+++++++++++++++++++++++++++======");
-          print(productApi.length);
-          print("=========== Product Api=========");
-          print(productApi.toString());
           if (value.length == 0) {
             setState(() {
               this._emptyCart = true;
@@ -40,7 +36,6 @@ class _CartState extends State<Cart> {
       } else if (value is String) {
         setState(() {
           message = value;
-          print(message);
         });
       }
     });
@@ -61,7 +56,6 @@ class _CartState extends State<Cart> {
   @override
   void initState() {
     super.initState();
-    print("====Trending Now==============");
     getCouponList();
     getTotalAmount();
   }

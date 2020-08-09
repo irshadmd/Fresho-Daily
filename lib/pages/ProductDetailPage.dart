@@ -28,10 +28,6 @@ class _PlantDetailState extends State<PlantDetail> {
         if (value is List) {
           setState(() {
             productApi = value;
-            print("=+++++++++++++++++++++++++++======");
-            print(productApi.length);
-            print("=========== Product Api=========");
-            print(productApi.toString());
             if (value.length == 0) {
               setState(() {
                 this._emptyCart = true;
@@ -45,7 +41,6 @@ class _PlantDetailState extends State<PlantDetail> {
         } else if (value is String) {
           setState(() {
             message = value;
-            print(message);
           });
         }
       });
@@ -57,7 +52,6 @@ class _PlantDetailState extends State<PlantDetail> {
   @override
   void initState() {
     super.initState();
-    print("====Trending Now==============");
     getCouponList();
     CartApi.cartCount().then((value) {
       if (value != 0) {
@@ -267,9 +261,6 @@ class _PlantDetailState extends State<PlantDetail> {
                                             )));
                                   }
                                 });
-                                print("Helooooooooooooooooooooooooooooo");
-                                print(this.widget.details.id.toString());
-                                print("Helooooooooooooooooooooooooooooo");
                               },
                               padding: EdgeInsets.symmetric(
                                   horizontal: 66, vertical: 14),

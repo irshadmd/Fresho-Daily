@@ -16,8 +16,6 @@ class _TrendingNowApiState extends State<TrendingNowApi> {
       if (mounted) {
         setState(() {
           productApi = value;
-          print("=+++++++++++++++++++++++++++======");
-          print(productApi.length);
         });
       }
     });
@@ -26,7 +24,6 @@ class _TrendingNowApiState extends State<TrendingNowApi> {
   @override
   void initState() {
     super.initState();
-    print("====Trending Now==============");
     getCouponList();
   }
 

@@ -44,12 +44,11 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.redAccent),
   ];
 
-  int count=0;
+  int count = 0;
 
   @override
   void initState() {
     super.initState();
-    print("======================== Trending Now Listing ==========");
     CategoriesList.TrendingNowListing();
     CartApi.cartCount().then((value) {
       if (value != 0) {
@@ -57,7 +56,7 @@ class _MainPageState extends State<MainPage> {
           count = value;
         });
       }
-      if(value==null){
+      if (value == null) {
         setState(() {
           count = 0;
         });
@@ -136,8 +135,11 @@ class _MainPageState extends State<MainPage> {
                     },
                     child: Badge(
                       badgeColor: Colors.black87,
-                      badgeContent: Text("$count",style: TextStyle(color: Colors.white),),
-                      child: Icon(Icons.shopping_cart,color:Colors.redAccent),
+                      badgeContent: Text(
+                        "$count",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      child: Icon(Icons.shopping_cart, color: Colors.redAccent),
                     ),
                   ),
                 ),

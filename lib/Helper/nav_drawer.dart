@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 
-import 'LogOut.dart';
-
 class DrawerWidget extends StatefulWidget {
   // final User user ;
   const DrawerWidget({
@@ -64,7 +62,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(35)),
               ),
-              currentAccountPicture:  CircleAvatar(
+              currentAccountPicture: CircleAvatar(
                 radius: 65,
                 backgroundColor: Colors.black87,
                 child: CircleAvatar(

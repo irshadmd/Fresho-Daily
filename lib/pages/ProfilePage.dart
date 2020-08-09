@@ -132,14 +132,12 @@ class _ProfilePageState extends State<ProfilePage> {
                   onPressed: () {
                     Navigator.of(context).pushNamed('/LoginPage');
                   },
-
                   color: Colors.redAccent,
                   icon: Icon(
                     Icons.lock_open,
                     color: Colors.white70,
                   ),
-                  label:
-                  Text('Login', style: TextStyle(color: Colors.white70)),
+                  label: Text('Login', style: TextStyle(color: Colors.white70)),
                 ),
               ),
             ],

@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:final_app/api/cart.dart';
-import 'package:final_app/models/AllProducts.dart';
 import 'package:final_app/models/Cart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,10 +24,6 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         if (value is List) {
           setState(() {
             productApi = value;
-            print("=+++++++++++++++++++++++++++======");
-            print(productApi.length);
-            print("=========== Product Api=========");
-            print(productApi.toString());
             if (value.length == 0) {
               setState(() {
                 this._emptyCart = true;
@@ -40,16 +35,13 @@ class _CartItemWidgetState extends State<CartItemWidget> {
             }
           });
         }
-      } else if (value is String) {
-        print(value);
-      }
+      } else if (value is String) {}
     });
   }
 
   @override
   void initState() {
     super.initState();
-    print("====Trending Now==============");
     getCouponList();
   }
 

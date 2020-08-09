@@ -20,33 +20,22 @@ class Login {
     );
     var data = jsonDecode(response.body);
     var responseJson = data["success"];
-    print(data);
-    print(data["error"]);
-    print("===============================================");
-    print(responseJson);
+
     if (data.containsKey("success")) {
-      print(data["data"]["email"]);
-      print(data["data"]["name"]);
-      print(responseJson["token"]);
       Preferences.setUser(
         data["data"]["email"],
         data["data"]["name"],
         responseJson["token"],
       );
-      print(
-          "================== Id ++++++++++++++++++++++++++++++++++++++++++++++++++++");
-      print(data["data"]["id"]);
       return data["data"]["id"].toInt();
     } else {
-      print(data["error"]);
       return data["error"];
     }
   }
 
   static Future<dynamic> LogoutUser() async {
     final authtoken = await Preferences.getData("authToken");
-    print("===============================");
-    print(authtoken);
+
     final response = await http.get(
       "https://freshodaily.com/api/logout",
       headers: <String, String>{
@@ -54,7 +43,6 @@ class Login {
         'Authorization': 'Bearer $authtoken',
       },
     );
-    print(response.body);
     Preferences.removeUser();
     return jsonDecode(response.body);
   }

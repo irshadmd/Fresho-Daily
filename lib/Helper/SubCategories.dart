@@ -1,6 +1,5 @@
 import 'package:final_app/api/Details.dart';
 import 'package:final_app/models/Details.dart';
-import 'package:final_app/pages/Categories.dart';
 import 'package:final_app/pages/ProductDetailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,8 +26,6 @@ class _SubCategoriesState extends State<SubCategories> {
       if (mounted) {
         setState(() {
           details = value;
-          print("=+++++++Details ++++++======");
-          print(details.toString());
         });
       }
     });
@@ -37,7 +34,6 @@ class _SubCategoriesState extends State<SubCategories> {
   @override
   void initState() {
     super.initState();
-    print("====Product Listing==============");
     getCouponList();
   }
 
@@ -79,7 +75,6 @@ class _SubCategoriesState extends State<SubCategories> {
                   fontWeight: FontWeight.w600,
                   fontSize: 20,
                   backgroundColor: Colors.redAccent,
-
                 ),
               ),
             )

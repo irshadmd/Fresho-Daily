@@ -1,12 +1,10 @@
 import 'package:final_app/Helper/SubCategoriesBox.dart';
 import 'package:final_app/Helper/nav_drawer.dart';
+import 'package:final_app/api/Categories.dart';
 import 'package:final_app/models/Categories.dart';
-import 'package:final_app/pages/ProductDetailPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:final_app/api/Categories.dart';
 
 class CategoryPage extends StatefulWidget {
   final id;
@@ -23,10 +21,7 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   void initState() {
     super.initState();
-    print("====Product Listing==============");
-    print(this.widget.id.toString());
     getCouponList();
-    print("Get coupon list");
   }
 
   void getCouponList() async {
@@ -35,8 +30,6 @@ class _CategoryPageState extends State<CategoryPage> {
       setState(() {
         print(value);
         productApi = value;
-        print("product api lengthhhhhhhhhhhh");
-        print(productApi.length);
       });
     });
   }

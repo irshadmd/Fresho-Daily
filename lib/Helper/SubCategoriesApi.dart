@@ -17,8 +17,6 @@ class _SubCategoriesApiState extends State<SubCategoriesApi> {
       if (mounted) {
         setState(() {
           productApi = value;
-          print("=+++++++++++++++++++++++++++======");
-          print(productApi.length);
         });
       }
     });
@@ -27,7 +25,6 @@ class _SubCategoriesApiState extends State<SubCategoriesApi> {
   @override
   void initState() {
     super.initState();
-    print("====Product Listing==============");
     getCouponList();
   }
 
@@ -37,7 +34,7 @@ class _SubCategoriesApiState extends State<SubCategoriesApi> {
         height: 160,
         decoration: BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.white70,width: 0.5),
+            border: Border.all(color: Colors.white70, width: 0.5),
             borderRadius: BorderRadius.circular(15)),
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         margin: EdgeInsets.symmetric(vertical: 15, horizontal: 10),

@@ -15,8 +15,6 @@ class _ProductCategoriesState extends State<ProductCategories> {
     await CategoriesList.categoriesListing().then((value) {
       setState(() {
         productApi = value;
-        print("=+++++++++++++++++++++++++++======");
-        print(productApi.length);
       });
     });
   }
@@ -24,7 +22,6 @@ class _ProductCategoriesState extends State<ProductCategories> {
   @override
   void initState() {
     super.initState();
-    print("====Product Listing==============");
     getCouponList();
   }
 
