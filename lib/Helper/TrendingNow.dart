@@ -112,6 +112,7 @@ class _TrendingNowState extends State<TrendingNow> {
                               CartApi.addToCart(this.widget.pices)
                                   .then((value) {
                                 if (value == "Item Added to Cart") {
+                                  Navigator.of(context).pushReplacementNamed('/MainPage');
                                   Scaffold.of(context).showSnackBar(SnackBar(
                                     content: Text("Item Added to Cart"),
                                   ));
