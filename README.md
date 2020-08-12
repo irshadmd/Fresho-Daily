@@ -1,10 +1,13 @@
-# final_app
+# Fresho Daily
 
-A new Flutter project.
+>> Food ordering app
+
+### This project is created in flutter.
+>> https://freshodaily.com
+
+
 
 ## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
